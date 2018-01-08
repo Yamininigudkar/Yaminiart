@@ -1,10 +1,8 @@
 let express = require('express');
 let router = new express.Router();
 let path = require('path');
-var session = require('express-session');
 let User = require('../models/user.js');
-let bcrypt = require('bcrypt');
-let Notch = require('../models/notch.js');
+let Product = require('../models/product.js');
 let fs = require('fs');
 var multer = require('multer');
 
@@ -80,19 +78,6 @@ router.post('/existinguser', function(req,res){
 }
 
 );
-router.get('/logout',function(req,res){
-  res.clearCookie('user_sid')
-  res.json("success")
-})
 
-// Accepts login information from new users, checks if the username exists, and saves the user if unique
-router.post('/newuser', actions.newUser);
-router.post('/getNotches', actions.getNotches);
-router.get('/notches', actions.getAllNotches);
-router.get('/findone/:id', actions.findOne);
-router.get('/findoneimage/:id', actions.findOneImage);
-router.get('/userNotches', actions.userNotches);
-router.post('/deleteNotch', actions.deleteNotch);
-router.get('/notches/list_by_category/:category', actions.searchNotches);
 
 module.exports = router;
